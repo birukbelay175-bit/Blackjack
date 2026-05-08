@@ -15,11 +15,20 @@ public class Hand {
 
     public int getScore() {
         int score = 0;
+        int aceCount = 0;
 
         for (Card card : cards) {
             score += card.getPointValue();
+
+            if (card.toString().startsWith("Ace")) {
+                aceCount++;
+            }
         }
 
+        while (score > 21 && aceCount > 0) {
+            score -= 10;
+            aceCount--;
+        }
         return score;
     }
 

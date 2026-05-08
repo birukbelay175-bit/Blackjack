@@ -30,6 +30,30 @@ public class Main {
             player.getHand().addCard(deck.dealCard());
             player.getHand().addCard(deck.dealCard());
         }
+        for (Player player : players) {
+            System.out.println("\n" + player.getName() + "'s turn:");
+
+            while (true) {
+                int score = player.getHand().getScore();
+
+                System.out.println("Hand: " + player.getHand());
+                System.out.println("Score: " + score);
+
+                if (score > 21) {
+                    System.out.println("Busted!");
+                    break;
+                }
+
+                System.out.print("Hit (H) or Stay (S)? ");
+                String choice = scanner.nextLine().toUpperCase();
+
+                if (choice.equals("H")) {
+                    player.getHand().addCard(deck.dealCard());
+                } else {
+                    break;
+                }
+            }
+        }
 
         Player winner = null;
         int bestScore = 0;
